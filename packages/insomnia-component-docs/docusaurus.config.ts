@@ -12,8 +12,12 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://insomnia.rest/',
-  baseUrl: '/',
+  url: 'https://cwangsmv.github.io/',
+  baseUrl: '/insomnia',
+  projectName: 'cwang.github.io/insomnia',
+  organizationName: 'cwang',
+  trailingSlash: false,
+  deploymentBranch: 'chroe/deply-to-github',
 
   onBrokenLinks: 'throw',
 
