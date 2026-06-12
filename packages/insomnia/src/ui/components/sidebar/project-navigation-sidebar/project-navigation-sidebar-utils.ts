@@ -50,6 +50,29 @@ export interface AllRequestsAndMetaInWorkspace {
 //   created: r.created,
 // });
 
+// Document types whose changes can affect the sidebar tree.
+export const SIDEBAR_RELEVANT_DOC_TYPES = [
+  models.project.type,
+  models.workspace.type,
+  models.request.type,
+  models.grpcRequest.type,
+  models.webSocketRequest.type,
+  models.socketIORequest.type,
+  models.requestGroup.type,
+  models.requestMeta.type,
+  models.grpcRequestMeta.type,
+  models.webSocketRequestMeta.type,
+  models.socketIORequestMeta.type,
+  models.requestGroupMeta.type,
+];
+
+// Unique key for tanstack to query and cache workspaces & collections.
+// The projects query key lives in the shared `~/ui/hooks/data` query-keys registry.
+export const WORKSPACES_QUERY_KEY = 'project-navigation-sidebar-workspaces';
+export const COLLECTION_QUERY_KEY = 'project-navigation-sidebar-collection';
+export const workspacesQueryKey = (projectId: string) => [WORKSPACES_QUERY_KEY, projectId];
+export const collectionQueryKey = (workspaceId: string) => [COLLECTION_QUERY_KEY, workspaceId];
+
 export async function getWorkspacesByProjectIds(projectIds: string[]) {
   const workspaces = await database.find<Workspace>(models.workspace.type, {
     parentId: { $in: projectIds },
